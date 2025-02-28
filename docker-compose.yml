@@ -9,6 +9,7 @@ services:
       - 8080:8080
     volumes:
       - ./keycloak/:/opt/keycloak/data/import/
+      - ./themes/:/opt/keycloak/themes/
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}

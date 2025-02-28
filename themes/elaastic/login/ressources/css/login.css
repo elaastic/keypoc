@@ -1,0 +1,15 @@
+.login-pf body {
+    background: #0f0;
+    border: #000000 solid 2px;
+}
+
+.card-pf {
+    background: #f00;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#kc-header-wrapper {
+    font-size: 24px;
+    color: #333333;
+}
