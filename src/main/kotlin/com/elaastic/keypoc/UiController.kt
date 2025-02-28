@@ -5,6 +5,7 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.security.oauth2.core.oidc.user.OidcUser
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
+import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
 
 
@@ -13,22 +14,14 @@ class UiController {
 
     @GetMapping("/")
     fun getIndex(model: Model, auth: Authentication?): String {
-        model.addAttribute(
-            "name",
-            if (auth is OAuth2AuthenticationToken && auth.principal is OidcUser) {
-                (auth.principal as OidcUser).preferredUsername
-            } else ""
-        );
 
-        model.addAttribute(
-            "isAuthenticated",
-            auth?.isAuthenticated ?: false
-        );
-
-        model.addAttribute(
-            "isNice",
-            auth != null && auth.authorities.stream().anyMatch { authority -> "NICE" == authority.authority })
-
+        model["name"] =
+            if (auth is OAuth2AuthenticationToken && auth.principal is OidcUser) (auth.principal as OidcUser).preferredUsername
+            else ""
+        model["isAuthenticated"] = auth?.isAuthenticated ?: false
+        auth?.let {
+            model["isNice"] = auth.authorities.any { it.authority == "NICE" }
+        }
         return "index.html";
     }
 
