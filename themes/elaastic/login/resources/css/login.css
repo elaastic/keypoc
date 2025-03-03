@@ -184,14 +184,13 @@ body {
     margin-left: 150px;
 }
 
-.login-content .box #social-providers {
-    margin-top: 50px;
+
+
+.login-content .box .social-providers {
+    padding: 5%;
 }
 
 .login-content .box .alternate-wrapper {
-    position: relative;
-    top: 30px;
-    left: -30px;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
