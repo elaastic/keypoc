@@ -13,27 +13,40 @@ ${msg("loginTitle",(realm.displayName!''))}
     <#if realm.password>
         <div>
             <form id="kc-form-login" class="form" onsubmit="return true;" action="${url.loginAction}" method="post">
-                <input id="username" class="login-field" placeholder="${msg("username")}" type="text" name="username" tabindex="1">
-                <input id="password" class="login-field" placeholder="${msg("password")}" type="password" name="password" tabindex="2">
+                <input id="username" class="login-field" placeholder="${msg("username")}" type="text" name="username">
+                <input id="password" class="login-field" placeholder="${msg("password")}" type="password"
+                       name="password">
                 <input class="submit" type="submit" value="${msg("doLogIn")}" tabindex="3">
             </form>
         </div>
     </#if>
-    <#if social.providers??>
-        <div class="alternate-wrapper">
-            <span spacing="16" class="separator"></span>
-            <div class="login-alternate-spacer"></div>
-            <span data-cy="text" font-size="16px" font-weight="400" class="login-alternate">${msg("or")}</span>
-            <div class="login-alternate-spacer"></div>
-            <span spacing="16" class="separator"></span>
-        </div>
-        <!--<p class="para">${msg("socialLoginAlternate")}</p>-->
-        <div id="social-providers">
-            <#list social.providers as p>
-                <input class="social-link-style" type="button" onclick="location.href='${p.loginUrl}';"
-                       value="${p.displayName}"/>
-            </#list>
+    <#if realm.password && social?? && social.providers?has_content>
+        <div id="kc-social-providers" class="${properties.kcFormSocialAccountSectionClass!}">
+            <hr/>
+            <h2>${msg("identity-provider-login-label")}</h2>
+
+            <ul class="${properties.kcFormSocialAccountListClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountListGridClass!}</#if>">
+                <#list social.providers as p>
+                    <li>
+                        <a id="social-${p.alias}"
+                           class="${properties.kcFormSocialAccountListButtonClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountGridItem!}</#if>"
+                           type="button" href="${p.loginUrl}">
+                            <#if p.iconClasses?has_content>
+                                <i class="${properties.kcCommonLogoIdP!} ${p.iconClasses!}" aria-hidden="true"></i>
+                                <span class="${properties.kcFormSocialAccountNameClass!} kc-social-icon-text">${p.displayName!}</span>
+                            <#else>
+                                <span class="${properties.kcFormSocialAccountNameClass!}">${p.displayName!}</span>
+                            </#if>
+                        </a>
+                    </li>
+                </#list>
+            </ul>
         </div>
     </#if>
+    <script>
+        <#list properties?keys as key>
+        console.log("key: ${key}, value: ${properties[key]!}");
+        </#list>
+    </script>
     </#if>
     </@layout.registrationLayout>
