@@ -23,7 +23,7 @@ ${msg("loginTitle",(realm.displayName!''))}
         <div class="alternate-wrapper">
             <span spacing="16" class="separator"></span>
             <div class="login-alternate-spacer"></div>
-            <span data-cy="text" font-size="16px" font-weight="400" class="login-alternate">or</span>
+            <span data-cy="text" font-size="16px" font-weight="400" class="login-alternate">${msg("or")}</span>
             <div class="login-alternate-spacer"></div>
             <span spacing="16" class="separator"></span>
         </div>
