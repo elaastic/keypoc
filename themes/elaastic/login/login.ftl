@@ -15,7 +15,7 @@
                     <form id="kc-form-login" class="form" onsubmit="return true;" action="${url.loginAction}"
                           method="post">
                         <input id="username" class="login-field" placeholder="${msg("username")}" type="text"
-                               name="username">
+                               name="username" value="${(login.username!'')}">
                         <input id="password" class="login-field" placeholder="${msg("password")}" type="password"
                                name="password">
                         <input class="submit" type="submit" value="${msg("doLogIn")}" tabindex="3">
