@@ -285,3 +285,7 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.required {
+    color: #a30000;
+}
