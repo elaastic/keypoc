@@ -1,4 +1,4 @@
-<#macro registrationLayout bodyClass="" displayInfo=false displayMessage=true>
+<#macro registrationLayout bodyClass="" displayInfo=false displayMessage=true displayRequiredFields=false>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
@@ -28,11 +28,11 @@
         </head>
 
         <body>
-        <#nested "header">
-        <div class="login-content"
-             style="background-image: url(&quot;${url.resourcesPath}/img/elaastic_background.jpg&quot;);">
-            <div class="box">
+        <div>
+            <div class="login-container">
+                <img class="logo" src="${url.resourcesPath}/img/elaastic_logo_rvb.png" alt="Logo of elaastic">
                 <#nested "form">
+                <#nested "info">
             </div>
         </div>
         </body>
